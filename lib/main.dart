@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {'color':[Color(0xff006834),Colors.white,Color(0xff00c495)],"image":"assets/images/cypher.png","name":"Cypher","category":"Sentinel",'logo':"assets/images/sent.webp"},
     {'color':[Color(0xff428ed1),Colors.white,Color(0xff83ffff)],"image":"assets/images/Harbor.png","name":"Harbor","category":"Controller",'logo':"assets/images/cont.webp"},
     {'color':[Color(0xffb41f19),Colors.white,Color(0xff8b1f1d)],"image":"assets/images/iso.png","name":"Iso","category":"Duelist",'logo':"assets/images/duel.webp"},
-    {'color':[Color(0xfff89484),Colors.white,Color(0xfff9b1d7)],"image":"assets/images/jett.png","name":"Jett","category":"Duelist",'logo':"assets/images/duel.webp"},
+    {'color':[Color(0xff800080),Colors.white,Color(0xfff9b1d7)],"image":"assets/images/jett.png","name":"Jett","category":"Duelist",'logo':"assets/images/duel.webp"},
     {'color':[Color(0xff006834),Colors.white,Color(0xff00c495)],"image":"assets/images/neon.png","name":"Neon","category":"Duelist",'logo':"assets/images/duel.webp"},
     {'color':[Color(0xff428ed1),Colors.white,Color(0xff83ffff)],"image":"assets/images/Omen.png","name":"Omen","category":"Controller",'logo':"assets/images/cont.webp"},
     {'color':[Color(0xffb41f19),Colors.white,Color(0xff8b1f1d)],"image":"assets/images/phoenix.png","name":"Phoenix","category":"Duelist",'logo':"assets/images/duel.webp"},
@@ -45,10 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
     {'color':[Color(0xff006834),Colors.white,Color(0xff00c495)],"image":"assets/images/reyna.png","name":"Reyna","category":"Duelist",'logo':"assets/images/duel.webp"},
     {'color':[Color(0xff428ed1),Colors.white,Color(0xff83ffff)],"image":"assets/images/skye.png","name":"Skye","category":"Initiator",'logo':"assets/images/init.webp"},
     {'color':[Color(0xffb41f19),Colors.white,Color(0xff8b1f1d)],"image":"assets/images/veto.png","name":"Veto","category":"Sentinel",'logo':"assets/images/sent.webp"},
-    {'color':[Color(0xfff89484),Colors.white,Color(0xfff9b1d7)],"image":"assets/images/Viper.png","name":"Viper","category":"Controller",'logo':"assets/images/cont.webp"},
+    {'color':[Color(0xff006834),Colors.white,Color(0xfff9b1d7)],"image":"assets/images/Viper.png","name":"Viper","category":"Controller",'logo':"assets/images/cont.webp"},
     {'color':[Color(0xff428ed1),Colors.white,Color(0xff83ffff)],"image":"assets/images/vyse.png","name":"Vyse","category":"Sentinel",'logo':"assets/images/sent.webp"},
-    {'color':[Color(0xfff89484),Colors.white,Color(0xfff9b1d7)],"image":"assets/images/waylay.png","name":"Waylay","category":"Duelist",'logo':"assets/images/duel.webp"},
-    {'color':[Color(0xffb41f19),Colors.white,Color(0xff8b1f1d)],"image":"assets/images/yoru.png","name":"Yoru","category":"Duelist",'logo':"assets/images/duel.webp"}
+    {'color':[Color(0xff800080),Colors.white,Color(0xfff9b1d7)],"image":"assets/images/waylay.png","name":"Waylay","category":"Duelist",'logo':"assets/images/duel.webp"},
+    {'color':[Color(0xffd01010),Colors.white,Color(0xff8b1f1d)],"image":"assets/images/yoru.png","name":"Yoru","category":"Duelist",'logo':"assets/images/duel.webp"}
 
 
 
@@ -81,7 +81,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Column(
                         children: [
-                          Text(list['name'],style: TextStyle(fontSize: 60,fontFamily: 'PermanentMarker',color: Colors.white,fontWeight: FontWeight.bold),),
+                          TweenAnimationBuilder(
+                              duration: Duration(milliseconds: 500),
+                              tween: Tween(begin: 0.0,end: 1.0),
+                              builder: (context,value,child){
+                                return Opacity(
+                                  opacity: value,
+                                  child: Transform.translate(
+                                    offset: Offset(0, (1 - value) * 30),
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: Text(list['name'],style: TextStyle(fontSize: 60,fontFamily: 'PermanentMarker',color: Colors.white,fontWeight: FontWeight.bold),)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -92,7 +104,19 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           SizedBox(height: 90,),
-                          Image.asset(list['image'],width: 400,height: 480,),
+                          TweenAnimationBuilder(
+                              tween: Tween(begin: 0.0,end: 1.0),
+                              duration: Duration(milliseconds: 950),
+                              builder: (context,value,child){
+                                return Opacity(
+                                  opacity: value,
+                                  child: Transform.translate(
+                                    offset: Offset(0, (1 - value) * 40),
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: Image.asset(list['image'],width: 400,height: 480,)),
 
                         ],
                       ),
